@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Plate OCR</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <h1>Upload Plate Image</h1>
+  <form id="uploadForm">
+    <input type="file" name="file" id="fileInput" accept="image/*">
+    <button type="submit">Upload</button>
+  </form>
+  <div id="result"></div>
+  <a href="/history">View History</a>
+
+  <script>
+    document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      let formData = new FormData();
+      formData.append("file", document.getElementById("fileInput").files[0]);
+
+      let res = await fetch("/upload", { method: "POST", body: formData });
+      let data = await res.json();
+
+      if (data.text) {
+        document.getElementById("result").innerHTML = `
+          <p><b>Detected Plate:</b> ${data.text}</p>
+          <img src="/static/uploads/${data.filename}" width="300">
+        `;
+
+        // Save history
+        let history = JSON.parse(localStorage.getItem("history") || "[]");
+        history.push(data);
+        localStorage.setItem("history", JSON.stringify(history));
+      }
+    });
+  </script>
+</body>
+</html>
