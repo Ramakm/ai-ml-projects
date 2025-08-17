@@ -6,38 +6,39 @@ The frontend is a simple **Flask web app** with **HTML/CSS/JavaScript** and a **
 
 ---
 
-## 📂 Project Structure
-
-├── app.py # Flask backend
-├── requirements.txt # Dependencies
+## Project Structure
+```bash
+hw6-plate-ui/
+├── app.py                 # Flask backend
+├── requirements.txt       # Dependencies
 ├── models/
-│ └── best.pt # YOLO trained model
+│   └── best.pt            # YOLO trained model
 ├── static/
-│ ├── styles.css # Styling
-│ ├── history.js # JS for history page
-│ └── uploads/ # Uploaded images
+│   ├── styles.css         # Styling
+│   ├── history.js         # JS for history page
+│   └── uploads/           # Uploaded images
 ├── templates/
-│ ├── index.html # Upload page
-│ └── history.html # History page
+│   ├── index.html         # Upload page
+│   └── history.html       # History page
 └── utils/
-├── image_processing.py # YOLO detection
-└── ocr.py # OCR extraction
+    ├── image_processing.py # YOLO detection
+    └── ocr.py             # OCR extraction
 
 
 ---
 
 ## ⚙️ Features
 
-- 📤 Upload an image of a car  
-- 🎯 Detect license plate region using **YOLOv8**  
-- 🔎 Extract plate text using **EasyOCR**  
-- 📜 Store recognition results in **browser LocalStorage**  
-- 🖼️ View past results in a **History page**  
-- 🎨 Simple and clean UI  
+- Upload an image of a car  
+- Detect license plate region using **YOLOv8**  
+- Extract plate text using **EasyOCR**  
+- Store recognition results in **browser LocalStorage**  
+- View past results in a **History page**  
+- Simple and clean UI  
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Backend:** Flask (Python)  
 - **AI/ML:** YOLOv8 (Ultralytics), EasyOCR  
@@ -47,7 +48,7 @@ The frontend is a simple **Flask web app** with **HTML/CSS/JavaScript** and a **
 
 ---
 
-## 🚀 Installation & Setup
+## Installation & Setup
 
 ### 1. Clone the repository
 ```bash
@@ -55,3 +56,24 @@ git clone https://github.com/your-username/hw6-plate-ui.git
 cd hw6-plate-ui
 ```
 
+### 2. Create virtual environment (optional but recommended)
+```bash
+python -m venv venv
+source venv/bin/activate   # On Linux/Mac
+venv\Scripts\activate      # On Windows
+```
+
+### 3. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Add YOLO model
+
+- Place your YOLO trained weights (best.pt) into the models/ folder.
+- You can train your own model or use a pre-trained one.
+
+### 5. Run the app
+```bash
+python app.py
+```
